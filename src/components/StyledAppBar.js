@@ -5,9 +5,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {withStyles} from '@material-ui/core/styles';
 
-const styles = {
-    root: {
-        flexGrow: 1,
+const styles = (theme) => {
+    return {
+        root: {
+            flexGrow: 1,
+        },
+        typography: {
+            ...theme.typography.title,
+            color: 'white'
+        }
     }
 };
 
@@ -17,7 +23,7 @@ const StyledAppBar = (props) => {
         <div className={props.classes.root}>
             <AppBar position="static" color="primary">
                 <Toolbar>
-                    <Typography variant="title" color="inherit">
+                    <Typography className={props.classes.typography} color="inherit">
                         Web-App Coding Challenge
                     </Typography>
                 </Toolbar>

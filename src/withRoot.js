@@ -3,6 +3,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import indigo from '@material-ui/core/colors/indigo';
 import green from '@material-ui/core/colors/green';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import 'typeface-roboto'
 
 const theme = createMuiTheme({
     palette: {
@@ -19,6 +20,9 @@ const theme = createMuiTheme({
     },
     typography: {
         useNextVariants: true,
+        title: {
+            fontSize: '22px'
+        }
     },
 });
 
