@@ -9,6 +9,7 @@ const styles = (theme) => {
     return {
         root: {
             flexGrow: 1,
+            width: '200%'
         },
         typography: {
             ...theme.typography.title,
