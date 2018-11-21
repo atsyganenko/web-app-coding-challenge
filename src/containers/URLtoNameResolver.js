@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import api from "cachios";
 import {withStyles} from '@material-ui/core/styles';
 
 const styles = (theme) => {
@@ -21,7 +21,7 @@ class URLtoNameResolver extends React.Component {
 
     componentDidMount() {
         if (this.props.url) {
-            axios.get(this.props.url)
+            api.get(this.props.url, {ttl: process.env.REACT_APP_REQUEST_CACHE_TTL})
                 .then(result => this.setState({
                     value: result.data.name,
                 }))

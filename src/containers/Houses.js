@@ -28,7 +28,6 @@ class Houses extends React.Component {
         this.setState({dialog: updatedState});
     };
 
-
     handleHouseDetailsDialogClose = () => {
         const updatedState = {...this.state.dialog};
         updatedState.display = false;

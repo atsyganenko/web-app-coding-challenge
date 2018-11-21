@@ -9,7 +9,8 @@
     "prop-types": "15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "typeface-roboto": "0.0.54"
+    "typeface-roboto": "0.0.54",
+    "cachios": "^2.0.0"
   },
   "devDependencies": {
     "dotenv": "^6.1.0",

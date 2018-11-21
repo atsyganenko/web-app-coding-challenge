@@ -6,7 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import axios from "axios";
+import api from "cachios";
 
 const styles = (theme) => ({
     table: {
@@ -48,8 +48,9 @@ class HousesTable extends React.Component {
     };
 
     _loadData(errorHandler) {
-        axios.get(process.env.REACT_APP_API_HOUSES_URL, {
-            params: {page: this.props.page, pageSize: this.props.pageSize}
+        api.get(process.env.REACT_APP_API_HOUSES_URL, {
+            params: {page: this.props.page, pageSize: this.props.pageSize},
+            ttl: process.env.REACT_APP_REQUEST_CACHE_TTL
         })
             .then(result => this.setState({
                 data: result.data,

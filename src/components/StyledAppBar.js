@@ -9,7 +9,9 @@ const styles = (theme) => {
     return {
         root: {
             flexGrow: 1,
-            width: '200%'
+        },
+        appBar: {
+            height: '80px'
         },
         typography: {
             ...theme.typography.title,
@@ -22,7 +24,7 @@ const StyledAppBar = (props) => {
 
     return (
         <div className={props.classes.root}>
-            <AppBar position="static" color="primary">
+            <AppBar className={props.classes.appBar} position="static" color="primary">
                 <Toolbar>
                     <Typography className={props.classes.typography} color="inherit">
                         Web-App Coding Challenge
