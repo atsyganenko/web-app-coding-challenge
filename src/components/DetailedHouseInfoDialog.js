@@ -15,6 +15,15 @@ const styles = (theme) => {
     return {
         key: {
             ...theme.typography.subtitle2,
+            [theme.breakpoints.down('sm')]: {
+                maxWidth: '130px'
+            }
+        },
+        content: {
+            [theme.breakpoints.down('sm')]: {
+                maxHeight: '400px',
+                padding: 0
+            }
         }
     };
 };
@@ -39,7 +48,7 @@ const DetailedHouseInfoDialog = (props) => {
             aria-labelledby="house-dialog"
             aria-describedby="house-dialog-description">
             <DialogTitle id="house-dialog">{houseDetails.name ? houseDetails.name : "No data"}</DialogTitle>
-            <DialogContent>
+            <DialogContent className={props.classes.content}>
                 <DialogContentText id="alert-dialog-description">
                     <Table>
                         <TableBody>
