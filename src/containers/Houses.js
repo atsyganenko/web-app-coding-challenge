@@ -43,7 +43,7 @@ class Houses extends React.Component {
             <React.Fragment>
                 <DetailedHouseInfoDialog open={this.state.dialog.display}
                                          houseDetails={this.state.dialog.houseDetails}
-                                         onClose={this.handleDialogClose}/>,
+                                         onClose={this.handleDialogClose}/>
                 <HousesTable page={this.state.page}
                              pageSize={10}
                              handleTableRowClick={this.handleTableRowClick}

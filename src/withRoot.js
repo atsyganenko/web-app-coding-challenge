@@ -2,6 +2,7 @@ import React from 'react';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import indigo from '@material-ui/core/colors/indigo';
 import green from '@material-ui/core/colors/green';
+import grey from '@material-ui/core/colors/grey';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'typeface-roboto'
 
@@ -17,6 +18,9 @@ const theme = createMuiTheme({
             main: green[500],
             dark: green[700],
         },
+        background: {
+            default: grey[100]
+        }
     },
     typography: {
         useNextVariants: true,
@@ -25,6 +29,10 @@ const theme = createMuiTheme({
         },
         subtitle2: {
             color: '#24b47e'
+        },
+        subtitle1: {
+            color: grey[600],
+            fontWeight: '500'
         }
     },
 });

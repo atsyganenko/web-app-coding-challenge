@@ -7,9 +7,17 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight"
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft"
 import FirstPageIcon from "@material-ui/icons/FirstPage"
 
-const styles = () => {
+const styles = (theme) => {
     return {
-        root: {}
+        root: {
+            width: '250px'
+        },
+        pageNumeration: {
+            ...theme.typography.subtitle1,
+            float: 'right',
+            marginRight: '20px',
+            padding: '12px'
+        }
     }
 };
 
@@ -31,6 +39,7 @@ const HouseTableNavigation = (props) => {
     return (
         <div className={classes.root}>
             <IconButton
+                color="primary"
                 onClick={handleFirstPageButtonClick}
                 disabled={page === 1}
                 aria-label="First Page"
@@ -38,6 +47,7 @@ const HouseTableNavigation = (props) => {
                 {theme.direction === 'rtl' ? <LastPageIcon/> : <FirstPageIcon/>}
             </IconButton>
             <IconButton
+                color="primary"
                 onClick={handleBackButtonClick}
                 disabled={page === 1}
                 aria-label="Previous Page"
@@ -45,12 +55,13 @@ const HouseTableNavigation = (props) => {
                 {theme.direction === 'rtl' ? <KeyboardArrowRight/> : <KeyboardArrowLeft/>}
             </IconButton>
             <IconButton
+                color="primary"
                 onClick={handleNextButtonClick}
                 aria-label="Next Page"
             >
                 {theme.direction === 'rtl' ? <KeyboardArrowLeft/> : <KeyboardArrowRight/>}
             </IconButton>
-            Page {page}
+            <div className={classes.pageNumeration}>Page {page}</div>
         </div>
     );
 };

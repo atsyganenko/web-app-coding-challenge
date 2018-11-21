@@ -6,17 +6,18 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import grey from '@material-ui/core/colors/grey';
 import axios from "axios";
 
-const styles = () => ({
+const styles = (theme) => ({
     table: {
-        width: '100%'
+        width: '100%',
+        tableLayout: 'fixed',
+        backgroundColor: 'white'
     },
     row: {
         '&:hover': {
-            backgroundColor: grey[100],
-        },
+            backgroundColor: theme.palette.background.default,
+        }
     }
 });
 
@@ -40,13 +41,9 @@ class HousesTable extends React.Component {
     }
 
     _loadData() {
-        axios.get(process.env.REACT_APP_API_HOUSES_URL,
-            {
-                params: {
-                    page: this.props.page,
-                    pageSize: this.props.pageSize
-                }
-            })
+        axios.get(process.env.REACT_APP_API_HOUSES_URL, {
+            params: {page: this.props.page, pageSize: this.props.pageSize}
+        })
             .then(result => this.setState({
                 data: result.data,
             }))
@@ -54,7 +51,8 @@ class HousesTable extends React.Component {
     }
 
     render() {
-        const {classes, handleTableRowClick} = this.props;
+        const {classes, handleTableRowClick, pageSize} = this.props;
+        const emptyRows = pageSize - Math.min(pageSize, this.state.data.length);
 
         return (
             <Table className={classes.table}>
@@ -76,6 +74,11 @@ class HousesTable extends React.Component {
                             </TableRow>
                         );
                     })}
+                    {emptyRows > 0 && (
+                        <TableRow style={{height: 48 * emptyRows}}>
+                            <TableCell colSpan={6}/>
+                        </TableRow>
+                    )}
                 </TableBody>
             </Table>
         );
