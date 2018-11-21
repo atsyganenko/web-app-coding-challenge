@@ -1,5 +1,5 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import indigo from '@material-ui/core/colors/indigo';
 import green from '@material-ui/core/colors/green';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,6 +22,9 @@ const theme = createMuiTheme({
         useNextVariants: true,
         title: {
             fontSize: '22px'
+        },
+        subtitle2: {
+            color: '#24b47e'
         }
     },
 });
@@ -30,7 +33,7 @@ function withRoot(Component) {
     function WithRoot(props) {
         return (
             <MuiThemeProvider theme={theme}>
-                <CssBaseline />
+                <CssBaseline/>
                 <Component {...props} />
             </MuiThemeProvider>
         );
