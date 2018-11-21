@@ -23,7 +23,7 @@ class URLtoNameResolver extends React.Component {
     }
 
     render() {
-        return (<p>{this.state.value}</p>);
+        return (<React.Fragment>{this.state.value}</React.Fragment>);
     }
 }
 
