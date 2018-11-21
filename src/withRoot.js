@@ -18,6 +18,9 @@ const theme = createMuiTheme({
             main: green[500],
             dark: green[700],
         },
+        error: {
+            main: '#e25950',
+        },
         background: {
             default: grey[100]
         }

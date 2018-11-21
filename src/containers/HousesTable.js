@@ -31,23 +31,30 @@ class HousesTable extends React.Component {
     }
 
     componentDidMount() {
-        this._loadData();
+        this._loadData(error => this.props.onDataLoadError(error));
     }
 
     componentDidUpdate(prevProps, prevState, prevContext) {
         if (this.props.page !== prevProps.page) {
-            this._loadData();
+            this._loadData(this._updateErrorHandler);
         }
     }
 
-    _loadData() {
+    _updateErrorHandler = (error) => {
+        this.setState({
+            data: [],
+        });
+        this.props.onDataLoadError(error);
+    };
+
+    _loadData(errorHandler) {
         axios.get(process.env.REACT_APP_API_HOUSES_URL, {
             params: {page: this.props.page, pageSize: this.props.pageSize}
         })
             .then(result => this.setState({
                 data: result.data,
             }))
-            .catch(error => this.props.onDataLoadError(error))
+            .catch(error => errorHandler(error))
     }
 
     render() {

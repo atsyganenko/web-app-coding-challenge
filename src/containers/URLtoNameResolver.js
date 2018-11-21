@@ -1,5 +1,14 @@
 import React from "react";
 import axios from "axios";
+import {withStyles} from '@material-ui/core/styles';
+
+const styles = (theme) => {
+    return {
+        errorMsg: {
+            color: theme.palette.error.main
+        }
+    }
+};
 
 class URLtoNameResolver extends React.Component {
 
@@ -17,7 +26,8 @@ class URLtoNameResolver extends React.Component {
                     value: result.data.name,
                 }))
                 .catch(error => this.setState({
-                    value: "Failed to fetch data"
+                    value: <span className={this.props.classes.errorMsg}>Failed to fetch data. Error
+                        details: {error.message}</span>
                 }));
         }
     }
@@ -27,4 +37,4 @@ class URLtoNameResolver extends React.Component {
     }
 }
 
-export default URLtoNameResolver;
+export default withStyles(styles)(URLtoNameResolver);

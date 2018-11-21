@@ -1,5 +1,6 @@
 import React from 'react';
 import DetailedHouseInfoDialog from '../components/DetailedHouseInfoDialog';
+import ErrorDialog from '../components/ErrorDialog';
 import HousesTable from './HousesTable';
 import HouseTableNavigation from '../components/HouseTableNavigation';
 
@@ -12,7 +13,7 @@ class Houses extends React.Component {
                 display: false,
                 houseDetails: {},
             },
-            page: 1,
+            page: 1
         }
     };
 
@@ -28,22 +29,23 @@ class Houses extends React.Component {
     };
 
 
-    handleDialogClose = () => {
+    handleHouseDetailsDialogClose = () => {
         const updatedState = {...this.state.dialog};
         updatedState.display = false;
         this.setState({dialog: updatedState});
     };
 
-    handleDataLoadError = () => {
-        //TODO
+    handleErrorDialogClose = () => {
+        this.setState({error: undefined});
+    };
+
+    handleDataLoadError = (error) => {
+        this.setState({error: {title: 'Failed to load data', message: error.message}});
     };
 
     render() {
         return (
             <React.Fragment>
-                <DetailedHouseInfoDialog open={this.state.dialog.display}
-                                         houseDetails={this.state.dialog.houseDetails}
-                                         onClose={this.handleDialogClose}/>
                 <HousesTable page={this.state.page}
                              pageSize={10}
                              handleTableRowClick={this.handleTableRowClick}
@@ -51,6 +53,13 @@ class Houses extends React.Component {
                 <HouseTableNavigation
                     onChangePage={this.handleChangePage}
                     page={this.state.page}/>
+                <DetailedHouseInfoDialog open={this.state.dialog.display}
+                                         houseDetails={this.state.dialog.houseDetails}
+                                         onClose={this.handleHouseDetailsDialogClose}/>
+                <ErrorDialog open={this.state.error !== undefined}
+                             errorMsg={this.state.error ? this.state.error.message : ""}
+                             title={this.state.error ? this.state.error.title : undefined}
+                             onClose={this.handleErrorDialogClose}/>
             </React.Fragment>
         );
     }
