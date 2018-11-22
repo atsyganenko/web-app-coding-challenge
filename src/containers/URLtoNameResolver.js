@@ -21,16 +21,23 @@ class URLtoNameResolver extends React.Component {
 
     componentDidMount() {
         if (this.props.url) {
-            api.get(this.props.url, {ttl: process.env.REACT_APP_REQUEST_CACHE_TTL})
-                .then(result => this.setState({
-                    value: result.data.name,
-                }))
-                .catch(error => this.setState({
-                    value: <span className={this.props.classes.errorMsg}>Failed to fetch data. Error
-                        details: {error.message}</span>
-                }));
+            this._fetchForName();
         }
     }
+
+    _fetchForName = () => {
+        api.get(this.props.url, {
+            ttl: process.env.REACT_APP_REQUEST_CACHE_TTL,
+            headers: {'accept': process.env.REACT_APP_API_ACCEPT_HEADER}
+        })
+            .then(result => this.setState({
+                value: result.data.name,
+            }))
+            .catch(error => this.setState({
+                value: <span className={this.props.classes.errorMsg}>Failed to fetch data. Error
+                        details: {error.message}</span>
+            }));
+    };
 
     render() {
         return (<React.Fragment>{this.state.value}</React.Fragment>);

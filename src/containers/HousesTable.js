@@ -50,6 +50,7 @@ class HousesTable extends React.Component {
     _loadData(errorHandler) {
         api.get(process.env.REACT_APP_API_HOUSES_URL, {
             params: {page: this.props.page, pageSize: this.props.pageSize},
+            headers: {'accept': process.env.REACT_APP_API_ACCEPT_HEADER},
             ttl: process.env.REACT_APP_REQUEST_CACHE_TTL
         })
             .then(result => this.setState({
