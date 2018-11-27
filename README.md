@@ -13,6 +13,11 @@ Erstelle eine Single-Page-Application. Die SPA soll einem Benutzer alle Häuser 
 Es soll möglich sein eines dieser Häuser aus der Tabelle auszuwählen. Durch Klick auf ein Haus soll dieses in einem Detail View angezeigt werden. Dort sollten mehr Information zu dem ausgewählten Haus ersichtlich sein.
 
 ## Solution
+
+### Install dependencies 
+
+`npm install`
+
 ### Run the app in development mode 
 
 `npm start`
